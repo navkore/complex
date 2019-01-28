@@ -13,3 +13,10 @@ after_success:
   - docker build -t navkore/complex-nginx ./nginx
   - docker build -t navkore/complex-server ./server
   - docker build -t navkore/complex-worker ./worker
+
+  - echo "$docker_password" | docker login -u "$docker_id" --password-stdin
+
+  - docker push navkore/complex-client 
+  - docker push navkore/complex-nginx
+  - docker push navkore/complex-server
+  - docker push navkore/complex-worker

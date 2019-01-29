@@ -1,43 +1,40 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "ContainerDefinitions": [
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "navkore/complex-client",
+      "hostname": "client",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "server",
+      "image": "navkore/complex-server",
+      "hostname": "api",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "worker",
+      "image": "navkore/complex-worker",
+      "hostname": "worker",
+      "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "navkore/complex-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
         {
-            "name": "client",
-            "image": "mmzaki/multi-client",
-            "hostName": "client",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "server",
-            "image": "mmzaki/multi-server",
-            "hostName": "api",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "worker",
-            "image": "mmzaki/multi-worker",
-            "hostName": "worker",
-            "essential": false,
-            "memory": 128
-        },
-        {
-            "name": "nginx",
-            "image": "mmzaki/multi-nginx",
-            "hostName": "nginx",
-            "essential": true,
-            "portMappings": [
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": [
-                "client",
-                "server"
-            ],
-            "memory": 128
+          "hostPort": 80,
+          "containerPort": 80
         }
-    ]
+      ],
+      "links": ["client", "server"],
+      "memory": 128
+    }
+  ]
 }

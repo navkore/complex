@@ -21,7 +21,7 @@ after_success:
   - docker push navkore/complex-server
   - docker push navkore/complex-worker
 deploy:
-  povoider: elasticbeanstalk
+  provoider: elasticbeanstalk
   region: eu-central-1
   app: complex
   env: complex-env

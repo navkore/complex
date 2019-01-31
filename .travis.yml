@@ -20,17 +20,17 @@ after_success:
   - docker push navkore/complex-nginx
   - docker push navkore/complex-server
   - docker push navkore/complex-worker
-deploy:
-  provider: elasticbeanstalk
-  region: eu-central-1
-  app: complex
-  env: complex-env
-  bucket_name: elasticbeanstalk-eu-central-1-475202701088
-  bucket_path: complex
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+# deploy:
+#   provider: elasticbeanstalk
+#   region: eu-central-1
+#   app: complex
+#   env: complex-env
+#   bucket_name: elasticbeanstalk-eu-central-1-475202701088
+#   bucket_path: complex
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key:
+#     secure: $AWS_SECRET_KEY
   
   

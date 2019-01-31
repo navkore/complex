@@ -9,28 +9,27 @@ script:
   - docker run navkore/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t navkore/complex-client ./client
-  - docker build -t navkore/complex-nginx ./nginx
-  - docker build -t navkore/complex-server ./server
-  - docker build -t navkore/complex-worker ./worker
+  - docker build -t navkore/multi-client ./client
+  - docker build -t navkore/multi-nginx ./nginx
+  - docker build -t navkore/multi-server ./server
+  - docker build -t navkore/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push navkore/multi-client
+  - docker push navkore/multi-nginx
+  - docker push navkore/multi-server
+  - docker push navkore/multi-worker
 
-  - echo "$docker_password" | docker login -u "$docker_id" --password-stdin
-
-  - docker push navkore/complex-client 
-  - docker push navkore/complex-nginx
-  - docker push navkore/complex-server
-  - docker push navkore/complex-worker
 # deploy:
 #   provider: elasticbeanstalk
-#   region: eu-central-1
-#   app: complex
-#   env: complex-env
-#   bucket_name: elasticbeanstalk-eu-central-1-475202701088
-#   bucket_path: complex
+#   region: us-west-1
+#   app: multi-docker
+#   env: MultiDocker-env
+#   bucket_name: elasticbeanstalk-us-west-1-306476627547
+#   bucket_path: docker-multi
 #   on:
 #     branch: master
 #   access_key_id: $AWS_ACCESS_KEY
 #   secret_access_key:
 #     secure: $AWS_SECRET_KEY
-  
-  
